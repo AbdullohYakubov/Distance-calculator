@@ -1,61 +1,63 @@
-var masofaElement = document.getElementById("input")
-var tezlikElement = document.getElementById("tezlik")
-var btnElement = document.getElementById("btn")
-var resultPiyoda = document.getElementById("resultPiyoda")
-var resultVelosiped = document.getElementById("resultVelosiped")
-var resultMashina = document.getElementById("resultMashina")
-var resultSamolyot = document.getElementById("resultSamolyot")
-var formElement = document.getElementById("form")
+var elDistanceForm = document.querySelector(".distance__form");
+var elDistanceInput = elDistanceForm.querySelector(".distance__input");
+var elDistanceResult = elDistanceForm.querySelector(".distance__alert");
+var elPedastrianVelocity = document.querySelector(".pedestrian__velocity");
+var elBikeVelocity = document.querySelector(".bike__velocity");
+var elCarVelocity = document.querySelector(".car__velocity");
+var elPlaneVelocity = document.querySelector(".plane__velocity");
 
-function hisobla(masofa,tezlik){
-    var result = masofa/tezlik
-    return `${Math.floor(result)} hour(s) ${Math.floor((result-Math.floor(result))*60)}minute(s)`
+var PEDESTRIAN_VELOCITY = 3.6;
+var BIKE_VELOCITY = 20.1;
+var CAR_VELOCITY = 70;
+var PLANE_VELOCITY = 800;
+
+function formatTime(time) {
+  var hour = Math.floor(time);
+  var minute = Math.floor((time - hour) * 60);
+  var second = Math.floor(((time - hour) * 60 - minute) * 60);
+
+  if (hour === 0 && minute > 0 && second > 0) {
+    return minute + " minutes " + second + " seconds";
+  } else if (hour === 0 && (second === 0) & (minute >= 0)) {
+    return minute + " minutes";
+  } else if (minute === 0 && hour > 0 && second > 0) {
+    return hour + " hours " + second + " seconds";
+  } else if (hour === 0 && minute === 0 && second > 0) {
+    return second + " seconds";
+  } else if (second === 0 && hour > 0 && minute > 0) {
+    return hour + " hours " + minute + " minutes";
+  } else if (minute === 0 && second === 0 && hour > 0) {
+    return hour + " hours";
+  } else {
+    return hour + " hours " + minute + " minutes " + second + " seconds";
+  }
 }
 
-// function hisobla(masofa,tezlik){
-//     var result = masofa/tezlik
-//     return `${Math.floor(result)} soat ${Math.floor(result-Math.floor(result))*60}minut ${Math.floor(Math.floor(result))*60}sicund`
-// }
+function calculate(element, distance, velocity) {
+  element.textContent = formatTime(distance / velocity);
+}
 
-var piyoda = 3.6
-var velosiped = 20.1
-var mashina = 70
-var samolyot = 800
+function handleDistanceFormSubmit(evt) {
+  evt.preventDefault();
+  var userDistance = Number(elDistanceInput.value.trim());
 
-formElement.addEventListener('submit',(event) => {
-    event.preventDefault()
-    console.log("input jonatildi")
+  if (isNaN(userDistance) || userDistance <= 0) {
+    elDistanceResult.textContent = "Please, enter a valid number!";
+    elDistanceResult.classList.add("distance__alert");
+    return;
+  } else {
+    elDistanceResult.textContent = "";
+    elDistanceResult.classList.remove("distance__alert");
+    elPedastrianVelocity.style.color = "green";
+    elBikeVelocity.style.color = "green";
+    elCarVelocity.style.color = "green";
+    elPlaneVelocity.style.color = "green";
+  }
 
-    if(masofaElement.value == "" || masofaElement.value == 0){
-        resultPiyoda.textContent = "The distance was entered incorrectly"
-        resultPiyoda.style.color = "#A40000"
-        
-        resultVelosiped.textContent = "The distance was entered incorrectly"
-        resultVelosiped.style.color = "#A40000"
+  calculate(elPedastrianVelocity, userDistance, PEDESTRIAN_VELOCITY);
+  calculate(elBikeVelocity, userDistance, BIKE_VELOCITY);
+  calculate(elCarVelocity, userDistance, CAR_VELOCITY);
+  calculate(elPlaneVelocity, userDistance, PLANE_VELOCITY);
+}
 
-        resultMashina.textContent = "The distance was entered incorrectly"
-        resultMashina.style.color = "#A40000"
-
-        resultSamolyot.textContent = "The distance was entered incorrectly"
-        resultSamolyot.style.color = "#A40000"
-    }else{
-        resultPiyoda.textContent = hisobla(Number(masofaElement.value),piyoda)
-        resultPiyoda.style.color = "#003366"
-
-        resultVelosiped.textContent = hisobla(Number(masofaElement.value),velosiped)
-        resultVelosiped.style.color = "#003366"
-
-        resultMashina.textContent = hisobla(Number(masofaElement.value),mashina)
-        resultMashina.style.color = "#003366"
-
-        resultSamolyot.textContent = hisobla(Number(masofaElement.value),samolyot)
-        resultSamolyot.style.color = "#003366"
-
-    }
-})
-
-
-// function hisobla(masofa,tezlik){
-//     var result = masofa/tezlik
-//     return `${Math.floor(result)} soat ${Math.floor(result-Math.floor(result))*60}minut ${Math.floor(Math.floor(result))*60}sicund`
-// }
+elDistanceForm.addEventListener("submit", handleDistanceFormSubmit);

@@ -3,46 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distance Calculator</title>
-    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-    <main class="container">
-        <form id="form" class="form_group">
-            <label>
-                <p>Distance:</p>
-                <input id="input" autocomplete="off" placeholder="km" type="text">
-                <button id="btn" type="submit">Measure</button>
-            </label>
-        </form>
-        <div class="cards">
-            <div class="card">
-                <h3>On foot</h3>
-                <h4>Velocity: <span id="tezlik">3.6</span> km/hr </h4>
-                <span id="resultPiyoda">N hour</span>
-            </div>
-            <div class="card">
-                <h3>Bike</h3>
-                <h4>Velocity: <span id="tezlik">20.1</span> km/hr </h4>
-                <span id="resultVelosiped">N hour</span>
-            </div>
-            <div class="card">
-                <h3>Car</h3>
-                <h4>Velocity: <span id="tezlik">70</span> km/hr </h4>
-                <span id="resultMashina">N hour</span>
-            </div>
-            <div class="card">
-                <h3>Plane</h3>
-                <h4>Velocity: <span id="tezlik">800</span> km/hr </h4>
-                <span id="resultSamolyot">N hour</span>
-            </div>
-        </div>
-    </main>
-</body>
+    <main>
+        <section>
+            <main class="container">
+                <section class="distance">
+                    <form class="distance__form">
+                        <label>
+                            <h3 class="distance__title">Distance</h3>
+                            <input type="text" placeholder="km" class="distance__input" />
+                            <button type="submit" class="distance__btn">Measure</button>
+                            <h1 class="distance__alert"></h1>
+                        </label>
+                    </form>
 
-<script src="./js/main.js"></script>
+                    <div class="cards">
+                        <div class="card">
+                            <img src="./img/person.png" alt="person" />
+                            <h3>On foot</h3>
+                            <h1 class="pedestrian__velocity result">N hour(s)</h1>
+                        </div>
+
+                        <div class="card">
+                            <img src="./img/bike.png" alt="bike" />
+                            <h3>By Bike</h3>
+                            <h1 class="bike__velocity result">N hour(s)</h1>
+                        </div>
+
+                        <div class="card">
+                            <img src="./img/car.png" alt="car" />
+                            <h3>By Car</h3>
+                            <h1 class="car__velocity result">N hour(s)</h1>
+                        </div>
+
+                        <div class="card">
+                            <img src="./img/plane.png" alt="plane" />
+                            <h3>By Plane</h3>
+                            <h1 class="plane__velocity result">N hour(s)</h1>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </section>
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
 
 </html>

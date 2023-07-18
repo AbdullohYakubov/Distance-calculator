@@ -1,0 +1,52 @@
+.distance__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.distance__title {
+    display: inline-block;
+}
+
+.distance__input,
+.distance__btn {
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.distance__alert {
+    color: rgb(152, 18, 18);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.card {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+.card>img {
+    user-select: none;
+}
+
+.result {
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
